@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Minimal News Reader</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+<div id="controls">
+<select id="sourceSelect">
+  <option value="">Select Source</option>
+
+  <optgroup label="National">
+    <option value="https://indianexpress.com/section/india/feed/">
+      Indian Express
+    </option>
+    <option value="https://www.thehindu.com/news/national/feeder/default.rss">
+      The Hindu
+    </option>
+  </optgroup>
+
+  <optgroup label="Mumbai">
+    <option value="https://www.mid-day.com/Resources/midday/rss/mumbai-news.xml">
+      Mid-Day Mumbai
+    </option>
+    <option value="https://www.hindustantimes.com/feeds/rss/cities/mumbai-news/rssfeed.xml">
+      Hindustan Times Mumbai
+    </option>
+    <option value="https://www.freepressjournal.in/rss/mumbai">
+      Free Press Journal Mumbai
+    </option>
+  </optgroup>
+</select>
+</div>
+<div id="feed"></div>
+
+<button id="loadMore" style="display:none;">Load More</button>
+
+<script src="script.js"></script>
+
+</body>
+</html>

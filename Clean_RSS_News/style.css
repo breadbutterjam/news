@@ -1,0 +1,61 @@
+body {
+  font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  max-width: 680px;
+  margin: 50px auto;
+  line-height: 1.7;
+  background: #fafafa;
+  color: #111;
+}
+
+/* Wrap select in subtle control area */
+#controls {
+  margin-bottom: 35px;
+}
+
+/* Updated Select Styling */
+select {
+  width: 240px;
+  padding: 8px 10px;
+  border: 1px solid #ddd;
+  background: white;
+  font-size: 14px;
+  border-radius: 4px;
+}
+
+/* News Item */
+.feed-item {
+  padding: 20px 0;
+  border-bottom: 1px solid #eee;
+}
+
+/* Title */
+.feed-title {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 21px;
+  line-height: 1.4;
+  margin-bottom: 6px;
+  cursor: pointer;
+  color: #111;
+}
+
+.feed-title:hover {
+  text-decoration: underline;
+}
+
+/* Date */
+.feed-date {
+  font-size: 13px;
+  color: #777;
+}
+
+button {
+  margin: 30px 0;
+  padding: 10px 16px;
+  border: 1px solid #ccc;
+  background: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #f2f2f2;
+}
