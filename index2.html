@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reader</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+<main>
+
+  <header>
+    <span class="wordmark">Reader</span>
+    <div class="header-right">
+      <div id="controls">
+        <select id="sourceSelect">
+          <option value="">— choose source —</option>
+          <optgroup label="National">
+            <option value="https://indianexpress.com/section/india/feed/">Indian Express</option>
+            <option value="https://www.thehindu.com/news/national/feeder/default.rss">The Hindu</option>
+          </optgroup>
+          <optgroup label="Mumbai">
+            <option value="https://www.mid-day.com/Resources/midday/rss/mumbai-news.xml">Mid-Day</option>
+            <option value="https://www.hindustantimes.com/feeds/rss/cities/mumbai-news/rssfeed.xml">Hindustan Times</option>
+            <option value="https://www.freepressjournal.in/rss/mumbai">Free Press Journal</option>
+          </optgroup>
+          <optgroup label="Sports">
+            <option value="https://www.espncricinfo.com/rss/content/story/feeds/0.xml">ESPNcricinfo — Global</option>
+            <option value="https://www.espncricinfo.com/rss/content/story/feeds/6.xml">ESPNcricinfo — India</option>
+          </optgroup>
+        </select>
+      </div>
+      <button id="settingsToggle" aria-label="Settings" title="Settings">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <div id="settingsPane" aria-hidden="true">
+    <div class="settings-row">
+      <div class="settings-label">
+        <span class="settings-name">Show images</span>
+        <span class="settings-desc">Display thumbnail images when available in the feed</span>
+      </div>
+      <label class="toggle" aria-label="Show images">
+        <input type="checkbox" id="toggleImages" />
+        <span class="toggle-track"><span class="toggle-thumb"></span></span>
+      </label>
+    </div>
+    <div class="settings-row">
+      <div class="settings-label">
+        <span class="settings-name">Show description</span>
+        <span class="settings-desc">Display a brief excerpt below each headline</span>
+      </div>
+      <label class="toggle" aria-label="Show description">
+        <input type="checkbox" id="toggleDesc" />
+        <span class="toggle-track"><span class="toggle-thumb"></span></span>
+      </label>
+    </div>
+  </div>
+
+  <div id="status"></div>
+  <div id="feed"></div>
+
+  <div id="footer">
+    <button id="loadMore" style="display:none;">Load more</button>
+  </div>
+
+</main>
+
+<script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,363 @@
+/* ─────────────────────────────────────────
+   Tokens
+───────────────────────────────────────── */
+:root {
+  --bg:        #f7f5f0;
+  --ink:       #1a1a18;
+  --muted:     #888880;
+  --rule:      #e0ddd6;
+  --accent:    #b5460f;
+  --serif:     'Lora', Georgia, 'Times New Roman', serif;
+  --mono:      'IBM Plex Mono', 'Courier New', monospace;
+  --sans:      -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --measure:   62ch;
+  --gutter:    clamp(20px, 5vw, 48px);
+}
+
+/* ─────────────────────────────────────────
+   Base
+───────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { font-size: 18px; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  margin: 0;
+  padding: var(--gutter);
+  min-height: 100vh;
+}
+
+main {
+  max-width: var(--measure);
+  margin: 0 auto;
+}
+
+/* ─────────────────────────────────────────
+   Header
+───────────────────────────────────────── */
+header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 28px;
+  border-bottom: 1.5px solid var(--ink);
+  margin-bottom: 36px;
+  flex-wrap: wrap;
+}
+
+.wordmark {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-style: italic;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+  user-select: none;
+}
+
+/* ─────────────────────────────────────────
+   Header right cluster
+───────────────────────────────────────── */
+.header-right {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+}
+
+/* Settings gear button */
+#settingsToggle {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--muted);
+  line-height: 0;
+  transition: color 0.15s, transform 0.4s ease;
+  margin-bottom: 2px;
+}
+
+#settingsToggle:hover { color: var(--ink); }
+
+#settingsToggle.active {
+  color: var(--accent);
+  transform: rotate(45deg);
+}
+
+/* ─────────────────────────────────────────
+   Settings pane
+───────────────────────────────────────── */
+#settingsPane {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.35s ease, opacity 0.3s ease, margin-bottom 0.3s ease;
+  margin-bottom: 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+#settingsPane.open {
+  max-height: 200px;
+  opacity: 1;
+  margin-bottom: 28px;
+}
+
+.settings-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 16px 0;
+  border-top: 1px solid var(--rule);
+}
+
+.settings-label {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.settings-name {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+}
+
+.settings-desc {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+/* ─────────────────────────────────────────
+   Toggle switch
+───────────────────────────────────────── */
+.toggle {
+  flex-shrink: 0;
+  cursor: pointer;
+  display: inline-flex;
+}
+
+.toggle input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-track {
+  width: 36px;
+  height: 20px;
+  background: var(--rule);
+  border-radius: 20px;
+  position: relative;
+  transition: background 0.2s ease;
+  display: block;
+}
+
+.toggle input:checked + .toggle-track {
+  background: var(--accent);
+}
+
+.toggle-thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: white;
+  transition: transform 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
+
+.toggle input:checked + .toggle-track .toggle-thumb {
+  transform: translateX(16px);
+}
+
+/* ─────────────────────────────────────────
+   Source Select
+───────────────────────────────────────── */
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--rule);
+  padding: 4px 20px 4px 0;
+  cursor: pointer;
+  outline: none;
+  /* Minimal custom arrow */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23888880'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 2px center;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+select:hover, select:focus {
+  color: var(--ink);
+  border-color: var(--ink);
+}
+
+optgroup {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+}
+
+/* ─────────────────────────────────────────
+   Status line
+───────────────────────────────────────── */
+#status {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  text-transform: uppercase;
+  min-height: 1.4em;
+  margin-bottom: 8px;
+  transition: opacity 0.3s;
+}
+
+/* ─────────────────────────────────────────
+   Feed items
+───────────────────────────────────────── */
+#feed {
+  /* Fade-in animation applied per-item via JS */
+}
+
+.feed-item {
+  padding: 24px 0;
+  border-bottom: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 5px;
+  opacity: 0;
+  transform: translateY(6px);
+  animation: fadeUp 0.35s ease forwards;
+}
+
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Staggered delays handled inline via style attribute in JS */
+
+.feed-title {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  line-height: 1.45;
+  color: var(--ink);
+  cursor: pointer;
+  text-decoration: none;
+  display: block;
+  transition: color 0.12s;
+}
+
+.feed-title:hover {
+  color: var(--accent);
+}
+
+.feed-date {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+}
+
+.feed-desc {
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: #555;
+  margin-top: 2px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.feed-image {
+  width: 100%;
+  max-height: 220px;
+  object-fit: cover;
+  display: block;
+  border-radius: 2px;
+  margin-top: 10px;
+  opacity: 0.92;
+}
+
+/* ─────────────────────────────────────────
+   Load more
+───────────────────────────────────────── */
+#footer {
+  padding: 36px 0 60px;
+}
+
+#loadMore {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid var(--rule);
+  padding: 9px 18px;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+#loadMore:hover {
+  color: var(--ink);
+  border-color: var(--ink);
+}
+
+/* ─────────────────────────────────────────
+   Empty / loading state
+───────────────────────────────────────── */
+.empty-note {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--muted);
+  padding: 48px 0;
+  text-align: center;
+}
+
+/* ─────────────────────────────────────────
+   Responsive
+───────────────────────────────────────── */
+@media (max-width: 480px) {
+  html { font-size: 16px; }
+  header { flex-direction: column; gap: 12px; }
+}
+
+.feed-desc {
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: #555;
+  margin-top: 2px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.feed-image {
+  width: 100%;
+  max-height: 220px;
+  object-fit: cover;
+  display: block;
+  border-radius: 2px;
+  margin-top: 10px;
+  opacity: 0.92;
+}
